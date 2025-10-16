@@ -8,6 +8,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Loader2, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { CONFIG } from "@/config/constants";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -105,14 +106,38 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Prepare data for n8n webhook
+      const webhookData = {
+        formType: "Contact",
+        timestamp: new Date().toISOString(),
+        source: CONFIG.COMPANY.NAME,
+        data: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company || null,
+          serviceInterest: formData.serviceInterest,
+          message: formData.message,
+          source: "ForwardTriage Marketing Website",
+        }
+      };
 
-      console.log("Form submitted:", {
-        source: "ForwardTriage",
-        ...formData,
-        status: "New",
+      // Use global config webhook URL
+      const webhookUrl = CONFIG.WEBHOOKS.CONTACT_FORM;
+
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(webhookData),
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      console.log("Form submitted successfully to n8n:", webhookData);
 
       toast({
         title: "Success!",
@@ -136,7 +161,7 @@ const Contact = () => {
         variant: "destructive",
         title: "Error",
         description:
-          "There was an error submitting the form. Please try again or email us at support@panvatech.com",
+          `There was an error submitting the form. Please try again or email us at ${CONFIG.EMAILS.SUPPORT}`,
       });
     } finally {
       setIsSubmitting(false);
@@ -190,8 +215,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Email</h3>
-                  <a href="mailto:support@panvatech.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    support@panvatech.com
+                  <a href={`mailto:${CONFIG.EMAILS.SUPPORT}`} className="text-muted-foreground hover:text-primary transition-colors">
+                    {CONFIG.EMAILS.SUPPORT}
                   </a>
                 </div>
               </div>
@@ -203,8 +228,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Phone</h3>
-                  <a href="tel:+18009162459" className="text-muted-foreground hover:text-primary transition-colors">
-                    1-800-916-2459
+                  <a href={`tel:+18009162459`} className="text-muted-foreground hover:text-primary transition-colors">
+                    {CONFIG.COMPANY.PHONE}
                   </a>
                 </div>
               </div>
@@ -217,8 +242,7 @@ const Contact = () => {
                 <div>
                   <h3 className="font-semibold mb-1">Location</h3>
                   <p className="text-muted-foreground">
-                    14269 Danielson St, Suite 400<br />
-                    Poway, CA 92064
+                    {CONFIG.COMPANY.ADDRESS}
                   </p>
                 </div>
               </div>
