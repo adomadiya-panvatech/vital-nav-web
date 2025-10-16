@@ -26,12 +26,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src={logo} 
-              alt="Forward Triage" 
-              className="h-10 w-auto brightness-0 dark:brightness-100" 
-              style={{ filter: 'brightness(0) saturate(100%) invert(16%) sepia(35%) saturate(1817%) hue-rotate(188deg) brightness(94%) contrast(92%)' }}
-            />
+            <img src={logo} alt="Forward Triage" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
