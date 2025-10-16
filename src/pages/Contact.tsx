@@ -196,8 +196,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Phone</h3>
-                  <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                    (123) 456-7890
+                  <a href="tel:+18009162459" className="text-muted-foreground hover:text-primary transition-colors">
+                    1-800-916-2459
                   </a>
                 </div>
               </div>
@@ -210,7 +210,8 @@ const Contact = () => {
                 <div>
                   <h3 className="font-semibold mb-1">Location</h3>
                   <p className="text-muted-foreground">
-                    Serving healthcare providers nationwide
+                    14269 Danielson St, Suite 400<br />
+                    Poway, CA 92064
                   </p>
                 </div>
               </div>
@@ -224,7 +225,7 @@ const Contact = () => {
                   <h3 className="font-semibold mb-1">Business Hours</h3>
                   <p className="text-muted-foreground">
                     Monday - Friday: 9:00 AM - 6:00 PM EST<br />
-                    Weekend: Emergency support available
+                    Saturday - Sunday: Closed
                   </p>
                 </div>
               </div>
