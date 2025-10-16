@@ -1,9 +1,16 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Privacy = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Privacy Policy - Forward Triage | Healthcare Data Protection"
+        description="Forward Triage privacy policy. Learn how we collect, use, and protect your personal and healthcare information. HIPAA compliant data security and encryption practices."
+        keywords="privacy policy, data protection, HIPAA compliance, healthcare data security, patient privacy, data encryption"
+        canonical="https://forwardtriage.com/privacy"
+      />
       <Navigation />
 
       <div className="container mx-auto px-4 py-12 max-w-4xl">

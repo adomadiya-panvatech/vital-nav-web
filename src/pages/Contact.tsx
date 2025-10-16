@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Loader2, Mail, Phone, MapPin, Clock } from "lucide-react";
 
 const Contact = () => {
@@ -152,6 +153,12 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <SEO
+        title="Contact Forward Triage - Request a Demo | Healthcare Triage Software"
+        description="Contact Forward Triage to schedule a demo of our AI-powered healthcare triage software. Get in touch with our team for inquiries, support, and partnership opportunities. Response within 24 hours."
+        keywords="contact forward triage, triage software demo, healthcare IT support, request demo, triage system inquiry, patient triage consultation"
+        canonical="https://forwardtriage.com/contact"
+      />
       <Navigation />
 
       {/* Hero Section */}

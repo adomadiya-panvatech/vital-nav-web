@@ -1,9 +1,16 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Terms = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Terms and Conditions - Forward Triage | Healthcare Software Terms of Service"
+        description="Forward Triage terms of service and conditions of use. Read our terms governing the use of our healthcare triage software and services."
+        keywords="terms of service, terms and conditions, software agreement, healthcare software terms, service agreement"
+        canonical="https://forwardtriage.com/terms"
+      />
       <Navigation />
 
       <div className="container mx-auto px-4 py-12 max-w-4xl">

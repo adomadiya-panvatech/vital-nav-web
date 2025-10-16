@@ -1,9 +1,16 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Accessibility = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Accessibility Notice - Forward Triage | WCAG Compliance & Accessibility Features"
+        description="Forward Triage accessibility commitment. Learn about our WCAG 2.1 Level AA compliance efforts, accessibility features, and how we collect visitor data to improve user experience."
+        keywords="accessibility, WCAG compliance, website accessibility, screen reader compatible, keyboard navigation, inclusive design"
+        canonical="https://forwardtriage.com/accessibility"
+      />
       <Navigation />
 
       <div className="container mx-auto px-4 py-12 max-w-4xl">

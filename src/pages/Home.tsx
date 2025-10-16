@@ -18,10 +18,46 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Home = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Forward Triage",
+    "description": "AI-powered healthcare triage software that streamlines patient care delivery and improves healthcare outcomes",
+    "url": "https://forwardtriage.com",
+    "logo": "https://forwardtriage.com/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-800-916-2459",
+      "contactType": "Customer Service",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "14269 Danielson St, Suite 400",
+      "addressLocality": "Poway",
+      "addressRegion": "CA",
+      "postalCode": "92064",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/forward-triage",
+      "https://twitter.com/forwardtriage"
+    ]
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Forward Triage - Healthcare Triage Software & AI Patient Triage System"
+        description="Transform healthcare delivery with Forward Triage's AI-powered intelligent patient triage software. Improve outcomes, reduce wait times by 40%, optimize resources. HIPAA compliant with 99.9% uptime. Trusted by leading healthcare providers."
+        keywords="healthcare triage, patient triage software, medical triage system, intelligent triage, AI triage, healthcare technology, patient prioritization, healthcare IT, HIPAA compliant triage, EHR integration, telemedicine triage, emergency triage, clinical decision support"
+        canonical="https://forwardtriage.com"
+        schema={schema}
+      />
       <Navigation />
 
       {/* Hero Section */}

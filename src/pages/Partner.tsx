@@ -14,6 +14,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Loader2, DollarSign, Megaphone, Headphones, Award } from "lucide-react";
 
 const Partner = () => {
@@ -175,6 +176,12 @@ const Partner = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Partner With Forward Triage - Healthcare Triage Partnership Opportunities"
+        description="Join Forward Triage's partner network. Become a reseller, integration partner, or referral partner for our AI-powered healthcare triage solutions. Earn competitive commissions and grow your healthcare business."
+        keywords="healthcare partnership, triage software reseller, healthcare IT partner, integration partner, referral partner, healthcare business opportunity, medical software partnership"
+        canonical="https://forwardtriage.com/partner"
+      />
       <Navigation />
 
       {/* Header */}
