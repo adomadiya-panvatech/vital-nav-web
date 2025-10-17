@@ -1,9 +1,9 @@
 // Global configuration constants
 export const CONFIG = {
-  // API Endpoints
-  API_ENDPOINTS: {
-    CONTACT_SUBMIT: "https://hcmktapi.panvatech.com/api/contact/onetriage/submit",
-  },
+  // API Endpoints (commented out - using n8n webhooks instead)
+  // API_ENDPOINTS: {
+  //   CONTACT_SUBMIT: "https://hcmktapi.panvatech.com/api/contact/onetriage/submit",
+  // },
   
   // n8n Webhook URLs
   WEBHOOKS: {
