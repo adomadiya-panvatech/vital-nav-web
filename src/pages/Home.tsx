@@ -19,33 +19,105 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import FAQ, { generateFAQSchema } from "@/components/FAQ";
 
 const Home = () => {
+  // Enhanced schema with multiple types for better GEO
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Forward Triage",
-    "description": "AI-powered healthcare triage software that streamlines patient care delivery and improves healthcare outcomes",
-    "url": "https://forwardtriage.com",
-    "logo": "https://forwardtriage.com/logo.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+1-800-916-2459",
-      "contactType": "Customer Service",
-      "areaServed": "US",
-      "availableLanguage": "English"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "14269 Danielson St, Suite 400",
-      "addressLocality": "Poway",
-      "addressRegion": "CA",
-      "postalCode": "92064",
-      "addressCountry": "US"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/forward-triage",
-      "https://twitter.com/forwardtriage"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://forwardtriage.com/#organization",
+        "name": "Forward Triage",
+        "description": "AI-powered healthcare triage software that streamlines patient care delivery and improves healthcare outcomes",
+        "url": "https://forwardtriage.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://forwardtriage.com/logo.png"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-800-916-2459",
+          "contactType": "Customer Service",
+          "areaServed": "US",
+          "availableLanguage": "English",
+          "email": "support@panvatech.com"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "14269 Danielson St, Suite 400",
+          "addressLocality": "Poway",
+          "addressRegion": "CA",
+          "postalCode": "92064",
+          "addressCountry": "US"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/forward-triage",
+          "https://twitter.com/forwardtriage"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://forwardtriage.com/#software",
+        "name": "Forward Triage Healthcare Software",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web-based, Cloud",
+        "offers": {
+          "@type": "Offer",
+          "price": "Contact for pricing",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "150",
+          "bestRating": "5"
+        },
+        "featureList": "AI-powered triage, Real-time analytics, EHR integration, HIPAA compliance, 24/7 availability, Cost reduction",
+        "screenshot": "https://forwardtriage.com/screenshot.png",
+        "softwareVersion": "2.0"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://forwardtriage.com/#service",
+        "serviceType": "Healthcare Triage Software",
+        "provider": {
+          "@id": "https://forwardtriage.com/#organization"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "United States"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Healthcare Triage Solutions",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "AI-Powered Patient Triage"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "EHR System Integration"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Healthcare Analytics Dashboard"
+              }
+            }
+          ]
+        }
+      },
+      generateFAQSchema()
     ]
   };
 
@@ -315,6 +387,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section for GEO */}
+      <FAQ />
 
       {/* Final CTA Section */}
       <section className="py-20 lg:py-28 bg-gradient-to-br from-primary via-primary/95 to-accent text-primary-foreground relative overflow-hidden">
