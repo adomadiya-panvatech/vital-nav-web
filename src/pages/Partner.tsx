@@ -734,7 +734,7 @@ const Partner = () => {
                     <SelectContent>
                       <SelectItem value="Morning">Morning (9 AM - 12 PM)</SelectItem>
                       <SelectItem value="Afternoon">Afternoon (12 PM - 5 PM)</SelectItem>
-                      <SelectItem value="Evening">Evening (5 PM - 8 PM)</SelectItem>
+                      <SelectItem value="Evening">Evening (5 PM - 6 PM)</SelectItem>
                       <SelectItem value="Any Time">Any Time</SelectItem>
                     </SelectContent>
                   </Select>
