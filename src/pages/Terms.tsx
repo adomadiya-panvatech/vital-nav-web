@@ -1,15 +1,27 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { getWebPageSchema, getOrganizationSchema } from "@/lib/schema";
 
 const Terms = () => {
+  const schema = [
+    getWebPageSchema(
+      "Terms and Conditions - ForwardTriage",
+      "ForwardTriage terms of service and conditions of use. Read our terms governing the use of our healthcare triage software and services.",
+      "https://forwardtriage.com/terms"
+    ),
+    getOrganizationSchema()
+  ];
+
   return (
     <div className="min-h-screen">
       <SEO
-        title="Terms and Conditions - Forward Triage | Healthcare Software Terms of Service"
-        description="Forward Triage terms of service and conditions of use. Read our terms governing the use of our healthcare triage software and services."
+        title="Terms and Conditions - ForwardTriage | Healthcare Software Terms of Service"
+        description="ForwardTriage terms of service and conditions of use. Read our terms governing the use of our healthcare triage software and services."
         keywords="terms of service, terms and conditions, software agreement, healthcare software terms, service agreement"
         canonical="https://forwardtriage.com/terms"
+        ogImage="https://forwardtriage.com/og-image.jpg"
+        schema={schema}
       />
       <Navigation />
 

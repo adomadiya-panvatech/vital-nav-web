@@ -3,12 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Loader2, Mail, Phone, MapPin, Clock } from "lucide-react";
 import { CONFIG } from "@/config/constants";
+import { getContactPageSchema, getWebPageSchema, getOrganizationSchema, getFAQSchema } from "@/lib/schema";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -20,6 +23,8 @@ const Contact = () => {
     company: "",
     serviceInterest: "",
     message: "",
+    preferredContactMethod: "",
+    bestTimeToContact: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -73,12 +78,9 @@ const Contact = () => {
       newErrors.email = "Please enter a valid email address";
     }
 
+    // Phone is required
     if (!formData.phone || !validatePhone(formData.phone)) {
       newErrors.phone = "Please enter a valid 10-digit US phone number";
-    }
-
-    if (!formData.company || formData.company.trim().length === 0) {
-      newErrors.company = "Please enter your company or organization name";
     }
 
     if (
@@ -114,10 +116,12 @@ const Contact = () => {
         data: {
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: formData.phone || null,
           company: formData.company || null,
           serviceInterest: formData.serviceInterest,
           message: formData.message,
+          preferredContactMethod: formData.preferredContactMethod || null,
+          bestTimeToContact: formData.bestTimeToContact || null,
           source: "ForwardTriage Marketing Website",
         }
       };
@@ -153,6 +157,8 @@ const Contact = () => {
         company: "",
         serviceInterest: "",
         message: "",
+        preferredContactMethod: "",
+        bestTimeToContact: "",
       });
       setErrors({});
     } catch (error) {
@@ -172,17 +178,56 @@ const Contact = () => {
     formData.name.trim().length >= 2 &&
     validateEmail(formData.email) &&
     validatePhone(formData.phone) &&
-    formData.company.trim().length > 0 &&
     formData.serviceInterest.trim().length >= 5 &&
     formData.message.trim().length >= 10;
+
+  const faqs = [
+    {
+      question: "How quickly will I receive a response to my inquiry?",
+      answer: "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call us directly at 1-800-916-2459 during business hours (Monday-Friday, 9:00 AM - 6:00 PM EST)."
+    },
+    {
+      question: "Can I schedule a demo of ForwardTriage?",
+      answer: "Yes! You can request a personalized demo by filling out the contact form above. Our sales team will reach out to schedule a convenient time to show you how ForwardTriage can transform your patient triage process. Include your preferred contact method and best time to reach you for faster scheduling."
+    },
+    {
+      question: "What information do I need to provide for a demo request?",
+      answer: "For a demo request, please provide your name, email, organization name, and describe your specific needs or service interests. This helps us tailor the demonstration to show features most relevant to your healthcare facility."
+    },
+    {
+      question: "Is ForwardTriage HIPAA compliant?",
+      answer: "Yes, ForwardTriage is fully HIPAA compliant. We implement comprehensive security measures including encryption, access controls, and regular security audits to protect patient health information. All data is handled in compliance with HIPAA and HITECH regulations."
+    },
+    {
+      question: "How can I contact support for technical issues?",
+      answer: "For technical support, please email support@panvatech.com or call 1-800-916-2459. Our support team is available Monday-Friday, 9:00 AM - 6:00 PM EST to assist with any technical questions or issues."
+    },
+    {
+      question: "What integration options are available with ForwardTriage?",
+      answer: "ForwardTriage integrates with major EHR systems including Epic, Cerner, and Allscripts. Our API-first architecture enables seamless integration with your existing healthcare IT infrastructure. Contact us to discuss specific integration requirements for your organization."
+    }
+  ];
+
+  const schema = [
+    getContactPageSchema(),
+    getWebPageSchema(
+      "Contact ForwardTriage - Request a Demo",
+      "Contact ForwardTriage to schedule a demo of our AI-powered healthcare triage software. Get in touch with our team for inquiries, support, and partnership opportunities.",
+      "https://forwardtriage.com/contact"
+    ),
+    getOrganizationSchema(),
+    getFAQSchema(faqs)
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <SEO
-        title="Contact Forward Triage - Request a Demo | Healthcare Triage Software"
-        description="Contact Forward Triage to schedule a demo of our AI-powered healthcare triage software. Get in touch with our team for inquiries, support, and partnership opportunities. Response within 24 hours."
+        title="Contact ForwardTriage - Request a Demo | Healthcare Triage Software"
+        description="Contact ForwardTriage to schedule a demo of our AI-powered healthcare triage software. Get in touch with our team for inquiries, support, and partnership opportunities. Response within 24 hours."
         keywords="contact forward triage, triage software demo, healthcare IT support, request demo, triage system inquiry, patient triage consultation"
         canonical="https://forwardtriage.com/contact"
+        ogImage="https://forwardtriage.com/og-image.jpg"
+        schema={schema}
       />
       <Navigation />
 
@@ -344,6 +389,7 @@ const Contact = () => {
                     className={errors.phone ? "border-destructive" : ""}
                     aria-required="true"
                     aria-invalid={!!errors.phone}
+                    required
                   />
                   {errors.phone && (
                     <p className="text-sm text-destructive">{errors.phone}</p>
@@ -353,7 +399,7 @@ const Contact = () => {
                 {/* Company */}
                 <div className="space-y-2">
                   <Label htmlFor="company">
-                    Company/Organization <span className="text-destructive">*</span>
+                    Company/Organization
                   </Label>
                   <Input
                     id="company"
@@ -363,12 +409,58 @@ const Contact = () => {
                     value={formData.company}
                     onChange={handleChange}
                     className={errors.company ? "border-destructive" : ""}
-                    aria-required="true"
                     aria-invalid={!!errors.company}
                   />
                   {errors.company && (
                     <p className="text-sm text-destructive">{errors.company}</p>
                   )}
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Preferred Contact Method */}
+                <div className="space-y-2">
+                  <Label htmlFor="preferredContactMethod">
+                    Preferred Contact Method
+                  </Label>
+                  <Select
+                    value={formData.preferredContactMethod}
+                    onValueChange={(value) => {
+                      setFormData((prev) => ({ ...prev, preferredContactMethod: value }));
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select preferred method" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Email">Email</SelectItem>
+                      <SelectItem value="Phone">Phone</SelectItem>
+                      <SelectItem value="Teams">Microsoft Teams</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Best Time to Contact */}
+                <div className="space-y-2">
+                  <Label htmlFor="bestTimeToContact">
+                    Best Time to Contact
+                  </Label>
+                  <Select
+                    value={formData.bestTimeToContact}
+                    onValueChange={(value) => {
+                      setFormData((prev) => ({ ...prev, bestTimeToContact: value }));
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select best time" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Morning">Morning (9 AM - 12 PM)</SelectItem>
+                      <SelectItem value="Afternoon">Afternoon (12 PM - 5 PM)</SelectItem>
+                      <SelectItem value="Evening">Evening (5 PM - 8 PM)</SelectItem>
+                      <SelectItem value="Any Time">Any Time</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
@@ -444,6 +536,37 @@ const Contact = () => {
               </p>
             </form>
           </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-muted/50 py-16">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Common questions about contacting ForwardTriage and our services
+            </p>
+          </div>
+          
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`}
+                className="bg-white px-6 rounded-lg border"
+              >
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pt-2">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
 

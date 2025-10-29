@@ -1,0 +1,84 @@
+# llms.txt for ForwardTriage
+
+## About
+ForwardTriage is an AI-powered healthcare triage software that helps hospitals and clinics streamline patient assessment, reduce wait times, and improve care outcomes. Our platform uses advanced AI algorithms to evaluate patient symptoms, vital signs, and medical history to determine urgency levels and recommend appropriate care pathways.
+
+## Primary Use Cases
+- Emergency department triage and patient prioritization
+- Urgent care patient assessment and routing
+- Telehealth pre-screening and virtual triage
+- Hospital capacity management and resource allocation
+- Patient flow optimization in healthcare facilities
+
+## Key Features
+- AI-driven symptom analysis and assessment
+- Real-time patient prioritization based on clinical urgency
+- HIPAA-compliant data handling and encryption
+- Seamless integration with major EHR systems (Epic, Cerner, Allscripts)
+- Automated patient assessment reducing triage time by 60-70%
+- Evidence-based clinical decision support
+- Real-time analytics and reporting dashboards
+- Mobile-responsive interface for point-of-care access
+
+## Target Customers
+- Hospital emergency departments
+- Urgent care centers and clinics
+- Healthcare networks and health systems
+- Telehealth providers
+- Ambulatory care facilities
+- Medical groups and independent practices
+
+## Benefits
+- Reduce emergency department wait times by up to 40%
+- Improve patient satisfaction scores
+- Optimize healthcare provider efficiency
+- Enhance patient safety through consistent triage protocols
+- Reduce operational costs through better resource utilization
+- Support evidence-based clinical decision making
+
+## Technology
+- Web-based SaaS platform
+- Cloud-hosted with enterprise-grade security
+- HIPAA and HITECH compliant
+- SOC 2 Type II certified infrastructure
+- API-first architecture for easy integration
+- Machine learning and natural language processing capabilities
+
+## Compliance & Security
+- HIPAA compliant data handling
+- Encrypted data transmission (TLS 1.3)
+- Role-based access controls
+- Audit logging and monitoring
+- Regular security assessments and penetration testing
+- Compliance with HITECH Act requirements
+
+## Contact
+Website: https://forwardtriage.com
+Email: support@panvatech.com
+Phone: 1-800-916-2459
+Address: 14269 Danielson St, Suite 400, Poway, CA 92064
+
+## Important Pages
+/: Homepage with product overview and key features
+/contact: Contact form for demo requests and inquiries
+/partner: Partnership opportunities for healthcare resellers and integrators
+/privacy: Privacy policy and data protection practices
+/terms: Terms of service and conditions of use
+/accessibility: Accessibility information and WCAG compliance
+
+## Primary Keywords
+- Healthcare triage software
+- Patient triage system
+- Medical triage solution
+- AI-powered triage
+- Automated patient assessment
+- Emergency triage platform
+- Healthcare AI software
+- Triage automation
+
+## Industry Recognition
+- Used by leading healthcare facilities across the United States
+- Featured in healthcare IT publications
+- Recognized for innovation in patient care optimization
+- Trusted by emergency departments and urgent care centers
+

@@ -17,6 +17,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Loader2, DollarSign, Megaphone, Headphones, Award } from "lucide-react";
 import { CONFIG } from "@/config/constants";
+import { getWebPageSchema, getOrganizationSchema, getServiceSchema } from "@/lib/schema";
 
 const Partner = () => {
   const { toast } = useToast();
@@ -30,6 +31,8 @@ const Partner = () => {
     organizationType: "",
     potentialUsers: "",
     message: "",
+    preferredContactMethod: "",
+    bestTimeToContact: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -136,6 +139,8 @@ const Partner = () => {
           organizationType: formData.organizationType,
           potentialUsers: formData.potentialUsers,
           message: formData.message,
+          preferredContactMethod: formData.preferredContactMethod || null,
+          bestTimeToContact: formData.bestTimeToContact || null,
           source: "ForwardTriage Marketing Website",
         }
       };
@@ -172,6 +177,8 @@ const Partner = () => {
         organizationType: "",
         potentialUsers: "",
         message: "",
+        preferredContactMethod: "",
+        bestTimeToContact: "",
       });
       setErrors({});
     } catch (error) {
@@ -197,13 +204,25 @@ const Partner = () => {
     formData.potentialUsers &&
     formData.message.trim().length >= 2;
 
+  const schema = [
+    getWebPageSchema(
+      "Partner With ForwardTriage - Healthcare Triage Partnership Opportunities",
+      "Join ForwardTriage's partner network. Become a reseller, integration partner, or referral partner for our AI-powered healthcare triage solutions. Earn competitive commissions and grow your healthcare business.",
+      "https://forwardtriage.com/partner"
+    ),
+    getOrganizationSchema(),
+    getServiceSchema()
+  ];
+
   return (
     <div className="min-h-screen">
       <SEO
-        title="Partner With Forward Triage - Healthcare Triage Partnership Opportunities"
-        description="Join Forward Triage's partner network. Become a reseller, integration partner, or referral partner for our AI-powered healthcare triage solutions. Earn competitive commissions and grow your healthcare business."
+        title="Partner With ForwardTriage - Healthcare Triage Partnership Opportunities"
+        description="Join ForwardTriage's partner network. Become a reseller, integration partner, or referral partner for our AI-powered healthcare triage solutions. Earn competitive commissions and grow your healthcare business."
         keywords="healthcare partnership, triage software reseller, healthcare IT partner, integration partner, referral partner, healthcare business opportunity, medical software partnership"
         canonical="https://forwardtriage.com/partner"
+        ogImage="https://forwardtriage.com/og-image.jpg"
+        schema={schema}
       />
       <Navigation />
 
@@ -664,10 +683,61 @@ const Partner = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className={`h-11 ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`}
+                    aria-required="true"
+                    aria-invalid={!!errors.phone}
+                    required
                   />
                   {errors.phone && (
                     <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
                   )}
+                </div>
+              </div>
+
+              {/* Preferred Contact Method & Best Time to Contact */}
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Preferred Contact Method */}
+                <div className="space-y-2">
+                  <Label htmlFor="preferredContactMethod" className="text-sm font-medium text-gray-700">
+                    Preferred Contact Method
+                  </Label>
+                  <Select
+                    value={formData.preferredContactMethod}
+                    onValueChange={(value) => {
+                      setFormData((prev) => ({ ...prev, preferredContactMethod: value }));
+                    }}
+                  >
+                    <SelectTrigger className="h-11 border-gray-300 focus:border-primary">
+                      <SelectValue placeholder="Select preferred method" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Email">Email</SelectItem>
+                      <SelectItem value="Phone">Phone</SelectItem>
+                      <SelectItem value="Teams">Microsoft Teams</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Best Time to Contact */}
+                <div className="space-y-2">
+                  <Label htmlFor="bestTimeToContact" className="text-sm font-medium text-gray-700">
+                    Best Time to Contact
+                  </Label>
+                  <Select
+                    value={formData.bestTimeToContact}
+                    onValueChange={(value) => {
+                      setFormData((prev) => ({ ...prev, bestTimeToContact: value }));
+                    }}
+                  >
+                    <SelectTrigger className="h-11 border-gray-300 focus:border-primary">
+                      <SelectValue placeholder="Select best time" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Morning">Morning (9 AM - 12 PM)</SelectItem>
+                      <SelectItem value="Afternoon">Afternoon (12 PM - 5 PM)</SelectItem>
+                      <SelectItem value="Evening">Evening (5 PM - 8 PM)</SelectItem>
+                      <SelectItem value="Any Time">Any Time</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>

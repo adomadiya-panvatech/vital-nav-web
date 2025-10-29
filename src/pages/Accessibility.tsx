@@ -1,15 +1,27 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { getWebPageSchema, getOrganizationSchema } from "@/lib/schema";
 
 const Accessibility = () => {
+  const schema = [
+    getWebPageSchema(
+      "Accessibility Notice - ForwardTriage",
+      "ForwardTriage accessibility commitment. Learn about our WCAG 2.1 Level AA compliance efforts, accessibility features, and how we collect visitor data to improve user experience.",
+      "https://forwardtriage.com/accessibility"
+    ),
+    getOrganizationSchema()
+  ];
+
   return (
     <div className="min-h-screen">
       <SEO
-        title="Accessibility Notice - Forward Triage | WCAG Compliance & Accessibility Features"
-        description="Forward Triage accessibility commitment. Learn about our WCAG 2.1 Level AA compliance efforts, accessibility features, and how we collect visitor data to improve user experience."
+        title="Accessibility Notice - ForwardTriage | WCAG Compliance & Accessibility Features"
+        description="ForwardTriage accessibility commitment. Learn about our WCAG 2.1 Level AA compliance efforts, accessibility features, and how we collect visitor data to improve user experience."
         keywords="accessibility, WCAG compliance, website accessibility, screen reader compatible, keyboard navigation, inclusive design"
         canonical="https://forwardtriage.com/accessibility"
+        ogImage="https://forwardtriage.com/og-image.jpg"
+        schema={schema}
       />
       <Navigation />
 

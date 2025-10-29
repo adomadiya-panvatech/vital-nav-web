@@ -1,24 +1,12 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
 
-  const scrollToFeatures = (e: React.MouseEvent) => {
-    if (location.pathname !== "/") {
-      return;
-    }
-    e.preventDefault();
-    const featuresSection = document.getElementById("features");
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
@@ -37,22 +25,6 @@ const Navigation = () => {
             >
               Home
             </Link>
-            {location.pathname === "/" ? (
-              <a
-                href="#features"
-                onClick={scrollToFeatures}
-                className="text-foreground hover:text-primary transition-colors cursor-pointer"
-              >
-                Features
-              </a>
-            ) : (
-              <Link
-                to="/#features"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Features
-              </Link>
-            )}
             <Link
               to="/partner"
               className="text-foreground hover:text-primary transition-colors"
@@ -94,23 +66,6 @@ const Navigation = () => {
             >
               Home
             </Link>
-            {location.pathname === "/" ? (
-              <a
-                href="#features"
-                onClick={scrollToFeatures}
-                className="block text-foreground hover:text-primary transition-colors cursor-pointer"
-              >
-                Features
-              </a>
-            ) : (
-              <Link
-                to="/#features"
-                className="block text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Features
-              </Link>
-            )}
             <Link
               to="/partner"
               className="block text-foreground hover:text-primary transition-colors"

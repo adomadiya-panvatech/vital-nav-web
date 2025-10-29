@@ -1,15 +1,27 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { getWebPageSchema, getOrganizationSchema } from "@/lib/schema";
 
 const Privacy = () => {
+  const schema = [
+    getWebPageSchema(
+      "Privacy Policy - ForwardTriage",
+      "ForwardTriage privacy policy. Learn how we collect, use, and protect your personal and healthcare information. HIPAA compliant data security and encryption practices.",
+      "https://forwardtriage.com/privacy"
+    ),
+    getOrganizationSchema()
+  ];
+
   return (
     <div className="min-h-screen">
       <SEO
-        title="Privacy Policy - Forward Triage | Healthcare Data Protection"
-        description="Forward Triage privacy policy. Learn how we collect, use, and protect your personal and healthcare information. HIPAA compliant data security and encryption practices."
-        keywords="privacy policy, data protection, HIPAA compliance, healthcare data security, patient privacy, data encryption"
+        title="Privacy Policy - ForwardTriage | Healthcare Data Protection"
+        description="ForwardTriage privacy policy. Learn how we collect, use, and protect your personal and healthcare information. HIPAA compliant data security and encryption practices."
+        keywords="privacy policy, data protection, HIPAA compliance, healthcare data security, patient privacy, data encryption, GDPR compliance"
         canonical="https://forwardtriage.com/privacy"
+        ogImage="https://forwardtriage.com/og-image.jpg"
+        schema={schema}
       />
       <Navigation />
 

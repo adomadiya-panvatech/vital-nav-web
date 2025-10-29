@@ -20,6 +20,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import FAQ, { generateFAQSchema } from "@/components/FAQ";
+import { getSoftwareApplicationSchema, getOrganizationSchema, getServiceSchema, getWebPageSchema } from "@/lib/schema";
 
 const Home = () => {
   // Enhanced schema with multiple types for better GEO
@@ -29,7 +30,7 @@ const Home = () => {
       {
         "@type": "Organization",
         "@id": "https://forwardtriage.com/#organization",
-        "name": "Forward Triage",
+        "name": "ForwardTriage",
         "description": "AI-powered healthcare triage software that streamlines patient care delivery and improves healthcare outcomes",
         "url": "https://forwardtriage.com",
         "logo": {
@@ -60,7 +61,7 @@ const Home = () => {
       {
         "@type": "SoftwareApplication",
         "@id": "https://forwardtriage.com/#software",
-        "name": "Forward Triage Healthcare Software",
+        "name": "ForwardTriage Healthcare Software",
         "applicationCategory": "HealthApplication",
         "operatingSystem": "Web-based, Cloud",
         "offers": {
@@ -124,10 +125,12 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Forward Triage - Healthcare Triage Software & AI Patient Triage System"
-        description="Transform healthcare delivery with Forward Triage's AI-powered intelligent patient triage software. Improve outcomes, reduce wait times by 40%, optimize resources. HIPAA compliant with 99.9% uptime. Trusted by leading healthcare providers."
-        keywords="healthcare triage, patient triage software, medical triage system, intelligent triage, AI triage, healthcare technology, patient prioritization, healthcare IT, HIPAA compliant triage, EHR integration, telemedicine triage, emergency triage, clinical decision support"
+        title="ForwardTriage - Healthcare Triage Software & AI Patient Triage System"
+        description="Transform healthcare delivery with ForwardTriage's AI-powered intelligent patient triage software. Improve outcomes, reduce wait times by 40%, optimize resources. HIPAA compliant with 99.9% uptime. Trusted by leading healthcare providers."
+        keywords="healthcare triage software, patient triage system, medical triage solution, AI-powered triage, automated patient assessment, emergency triage platform, healthcare AI software, triage automation"
         canonical="https://forwardtriage.com"
+        ogImage="https://forwardtriage.com/og-image.jpg"
+        ogUrl="https://forwardtriage.com"
         schema={schema}
       />
       <Navigation />
@@ -144,8 +147,8 @@ const Home = () => {
               </div>
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                Transform Healthcare
-                <span className="block text-accent-foreground">Triage Delivery</span>
+                Revolutionary Healthcare Triage Software
+                <span className="block text-accent-foreground">That Transforms Patient Care</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
